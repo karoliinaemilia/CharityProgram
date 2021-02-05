@@ -8,13 +8,16 @@ Aja terminaalissa komennot
 ja sen jälkeen 
 ```npm start```.
 
-Ohjelma avautoo osoitteeseen localhost: 3000
+Ohjelma avautuu osoitteeseen localhost:3000
 
-Tai mene sivulle heroku jossa ohjelma on käynnissä.
+#### Testit
 
+Ohjelman ollessa käynnissä testit voi ajaa komennolla ```npm run cypress:open```
 
 ### Parannusehdotuksia
 
+* Virheviestit jos käyttäjä yrittää kohdentaa enemmän rahaa kuin mahdollista
 * Tietojen synkronointi palvelimella
 * Kirjautuminen ja käyttäjäroolit, kuka saa kohdentaa varoja.
 * Käyttäjä saa päättää paljonko ottaa projektilta rahoja/kumoaa vain viimeisimmän kohdennuksen.
+* Käyttäjältä kysytään varmennusta kun käyttäjä haluaa kohdentaa enemmän rahoja kun projekti tarvitsee
