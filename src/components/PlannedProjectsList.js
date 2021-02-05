@@ -1,16 +1,21 @@
 import React from 'react'
-import { Table, TableBody, TableCell, TableContainer,
+import { Table, TableBody, TableContainer,
   TableHead, TableRow, Button }
   from '@material-ui/core'
+import { formatMoney } from '../utils/formatFunctions'
+import { StyledTableCell } from '../utils/tableComponents'
 
+// component for showing planned projects
 const PlannedProjectsList = ({ projects, setProjects, availableFunds, setAvailableFunds }) => {
 
+  // sets a project as started
   const startProject = (id) => {
     const changedProject = projects.find(project => project.id === id)
     changedProject.started = true
     setProjects(projects.map(project => project.id === id ? changedProject : project))
   }
 
+  // returns funds that have been assigned to a project
   const returnFunds = (id) => {
     const changedProject = projects.find(project => project.id === id)
     setAvailableFunds(availableFunds + changedProject.assignedFunds)
@@ -21,32 +26,32 @@ const PlannedProjectsList = ({ projects, setProjects, availableFunds, setAvailab
 
   return (
     <div>
-      <p>Suunnitellut projektit</p>
-      <TableContainer style={{ maxHeight: 440 }}>
+      <h4>Suunnitellut projektit</h4>
+      <TableContainer style={{ maxHeight: '55vh' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell>Nimi</TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-              <TableCell align='right'>Tavoite</TableCell>
-              <TableCell align='right'>Kohdennettu</TableCell>
+              <StyledTableCell>Nimi</StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell></StyledTableCell>
+              <StyledTableCell align='right'>Tavoite</StyledTableCell>
+              <StyledTableCell align='right'>Kohdennettu</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {projects.filter(project => !project.started).map((project) => (
               <TableRow key={project.id}>
-                <TableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="row">
                   {project.name}
-                </TableCell>
-                <TableCell align='right'>
-                  {project.funds > project.target ? <Button onClick={() => startProject(project.id)} variant='contained' color='primary'>Aloita hanke</Button> : null}
-                </TableCell>
-                <TableCell align='right'>
-                  {project.assignedFunds !== 0 ? <Button onClick={() => returnFunds(project.id)}>Palauta varat</Button> : null}
-                </TableCell>
-                <TableCell align='right'>{project.target}</TableCell>
-                <TableCell align='right'>{project.funds}</TableCell>
+                </StyledTableCell>
+                <StyledTableCell align='right'>
+                  {project.funds >= project.target ? <Button onClick={() => startProject(project.id)} variant='contained' style={{ backgroundColor: '#54A1A0' }}>Aloita hanke</Button> : null}
+                </StyledTableCell>
+                <StyledTableCell align='right'>
+                  {project.assignedFunds !== 0 ? <Button onClick={() => returnFunds(project.id) } variant='contained'>Palauta varat</Button> : null}
+                </StyledTableCell>
+                <StyledTableCell align='right'>{formatMoney(project.target)}</StyledTableCell>
+                <StyledTableCell align='right'>{formatMoney(project.funds)}</StyledTableCell>
               </TableRow>
             ))}
           </TableBody>

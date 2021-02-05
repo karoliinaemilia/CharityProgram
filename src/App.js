@@ -5,17 +5,26 @@ import projectService from './services/projects'
 import FundsForm from './components/FundsForm'
 import PlannedProjectsList from './components/PlannedProjectsList'
 import StartedProjectsList from './components/StartedProjectsList'
+import { formatMoneyEur } from './utils/formatFunctions'
+import { Grid, AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
 
 const App = () => {
+  // all donations
   const [donations, setDonations] = useState([])
+  // all projects
   const [projects, setProjects] = useState([])
+  // sum of all donations
   const [donationsSum, setDonationsSum] = useState(0)
+  // sum of all donations that didn't have a target
   const [availableFunds, setAvailableFunds] = useState(0)
 
+  // helper for counting donation sums
   const sumCounter = (sumNow, donation) => {
     return sumNow + donation.sum
   }
 
+  // uses projectService and donationService to fecth donations and projects, adds fields places them in state
   useEffect(() => {
     projectService
       .getAll()
@@ -32,6 +41,7 @@ const App = () => {
       })
   }, [])
 
+  // calculates targeted donations
   useEffect(() => {
     const directDonations = donations.filter(donation => donation.target)
     directDonations.forEach((donation => {
@@ -46,16 +56,38 @@ const App = () => {
   }, [donations, projects])
 
   return (
-    <div>
-      <img src={logo}></img>
-      <p>Lahjoitukset yhteensä: {donationsSum}</p>
-      <p>Kohdentamattomat varat: {availableFunds}</p>
-      <FundsForm projects={projects} setProjects={setProjects} availableFunds={availableFunds} setAvailableFunds={setAvailableFunds} />
-      <div>
-        <PlannedProjectsList projects={projects} setProjects={setProjects} setAvailableFunds={setAvailableFunds} availableFunds={availableFunds}/>
-        <StartedProjectsList projects={projects} />
+    <div style={{ background: '#7BAFAF', height: '100%' }}>
+      <AppBar style={{ maxHeight:'100px' }} color='white' position="static">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <img src={logo}></img>
+        </Toolbar>
+      </AppBar>
+      <div style={{ margin: '20px 20px 20px 20px' }}>
+        <Typography>
+          <Grid  container spacing={3} justify='space-around'>
+            <Grid item xs={6}>
+              <h2 style={{ textAlign: 'center' }}>Lahjoitukset yhteensä: {formatMoneyEur(donationsSum)}</h2>
+            </Grid>
+            <Grid item xs={6}>
+              <h2 style={{ textAlign: 'center' }}>Kohdentamattomat varat: {formatMoneyEur(availableFunds)}</h2>
+            </Grid>
+            <Grid item xs={12}>
+              <FundsForm projects={projects} setProjects={setProjects} availableFunds={availableFunds} setAvailableFunds={setAvailableFunds} />
+            </Grid>
+            <Grid item xs={6}>
+              <PlannedProjectsList projects={projects} setProjects={setProjects} setAvailableFunds={setAvailableFunds} availableFunds={availableFunds}/>
+            </Grid>
+            <Grid item xs={6}>
+              <StartedProjectsList projects={projects} />
+            </Grid>
+          </Grid>
+        </Typography>
       </div>
     </div>
+
   )
 }
 
