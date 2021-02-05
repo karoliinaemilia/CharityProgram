@@ -16,6 +16,7 @@ Ohjelman ollessa käynnissä testit voi ajaa komennolla ```npm run cypress:open`
 
 ### Parannusehdotuksia
 
+* Virheviestit jos käyttäjä yrittää kohdentaa enemmän rahaa kuin mahdollista
 * Tietojen synkronointi palvelimella
 * Kirjautuminen ja käyttäjäroolit, kuka saa kohdentaa varoja.
 * Käyttäjä saa päättää paljonko ottaa projektilta rahoja/kumoaa vain viimeisimmän kohdennuksen.
