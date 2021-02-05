@@ -10,6 +10,9 @@ ja sen jälkeen
 
 Ohjelma avautuu osoitteeseen localhost:3000
 
+#### Testit
+
+Ohjelman ollessa käynnissä testit voi ajaa komennolla ```npm run cypress:open```
 
 ### Parannusehdotuksia
 
