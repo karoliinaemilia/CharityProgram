@@ -8,9 +8,7 @@ Aja terminaalissa komennot
 ja sen jälkeen 
 ```npm start```.
 
-Ohjelma avautoo osoitteeseen localhost: 3000
-
-Tai mene sivulle heroku jossa ohjelma on käynnissä.
+Ohjelma avautuu osoitteeseen localhost:3000
 
 
 ### Parannusehdotuksia
@@ -18,3 +16,4 @@ Tai mene sivulle heroku jossa ohjelma on käynnissä.
 * Tietojen synkronointi palvelimella
 * Kirjautuminen ja käyttäjäroolit, kuka saa kohdentaa varoja.
 * Käyttäjä saa päättää paljonko ottaa projektilta rahoja/kumoaa vain viimeisimmän kohdennuksen.
+* Käyttäjältä kysytään varmennusta kun käyttäjä haluaa kohdentaa enemmän rahoja kun projekti tarvitsee
