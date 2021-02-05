@@ -45,7 +45,7 @@ const PlannedProjectsList = ({ projects, setProjects, availableFunds, setAvailab
                   {project.name}
                 </StyledTableCell>
                 <StyledTableCell align='right'>
-                  {project.funds >= project.target ? <Button onClick={() => startProject(project.id)} variant='contained' style={{ backgroundColor: '#54A1A0' }}>Aloita hanke</Button> : null}
+                  {project.funds >= project.target ? <Button onClick={() => startProject(project.id)} variant='contained' style={{ backgroundColor: '#7BAFAF' }}>Aloita hanke</Button> : null}
                 </StyledTableCell>
                 <StyledTableCell align='right'>
                   {project.assignedFunds !== 0 ? <Button onClick={() => returnFunds(project.id) } variant='contained'>Palauta varat</Button> : null}

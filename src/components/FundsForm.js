@@ -67,8 +67,7 @@ const FundsForm = ({ projects, setProjects, availableFunds, setAvailableFunds })
             Valitse Summa
           </DialogContentText>
           <TextField
-            id="amount"
-            label="Number"
+            id="amount"S
             type="number"
             value={assignedSum}
             onChange={handleSumChange}
